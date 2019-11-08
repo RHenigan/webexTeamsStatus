@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @Component
@@ -29,10 +30,12 @@ public class WebexClient {
         }
 
         if (null != responseEntity) {
-            return responseEntity.getBody();
-        } else {
-            return "Object Not Retrieved";
+            LinkedHashMap mappedMsg = (LinkedHashMap) responseEntity.getBody();
+            if (mappedMsg != null) {
+                return mappedMsg.get("html");
+            }
         }
+        return "Object Not Retrieved";
     }
 
     private HttpEntity<Object> makeHTTPEntity() {
