@@ -11,20 +11,17 @@ import java.util.LinkedList;
 @Service
 public class MeetingService {
 
-    public LinkedList getMeetingAgenda() {
-        return StatusBotController.dynamicSchedule.generateExpectedSchedule();
+
+    public String getMeetingAgenda() {
+        String agenda = "";
+        for (ScheduleNode scheduleNode : StatusBotController.dynamicSchedule.generateExpectedSchedule()) {
+            agenda = agenda + scheduleNode.getName() + " " + scheduleNode.getExpectedStartTime() + "-" + scheduleNode.getExpectedEndTime() + "\n";
+        }
+        return agenda;
     }
 
     public void startMeeting() {
         StatusBotController.dynamicSchedule.setScheduledStartTime(new Date());
     }
 
-//    public void addTeam(String teamName) {
-//        ScheduleNode team = new ScheduleNode();
-//        Date date = new Date();
-//
-//        team.setActualStartTime(StatusBotController.dynamicSchedule.getScheduledStartTime());
-//        team.setExpectedEndTime(date);
-////        getMeetingAgenda().add();
-//    }
 }

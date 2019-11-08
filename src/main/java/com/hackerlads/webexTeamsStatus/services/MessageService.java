@@ -52,6 +52,8 @@ public class MessageService {
                 }
             } else if (command.equalsIgnoreCase(":agenda")) {
                 getMeetingAgenda();
+            } else if (command.equalsIgnoreCase(":resetmeeting")) {
+                resetMeeting();
             } else {
                 System.out.println("Not a Valid Command");
             }
@@ -96,7 +98,15 @@ public class MessageService {
     }
 
     private void getMeetingAgenda() {
-        webexClient.createMessage(meetingService.getMeetingAgenda().toString());
+        String agenda = meetingService.getMeetingAgenda();
+        if (!agenda.equalsIgnoreCase("")) {
+            webexClient.createMessage(meetingService.getMeetingAgenda());
+        }
+    }
+
+    private void resetMeeting() {
+        StatusBotController.dynamicSchedule.resetMeeting();
+        webexClient.createMessage("Your meeting has been reset");
     }
 
     public void notifyTeamsOfUpcommingPresentation() {
