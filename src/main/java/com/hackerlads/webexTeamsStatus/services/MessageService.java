@@ -23,12 +23,36 @@ public class MessageService {
             System.out.println("Command: " + command);
             if (command.equalsIgnoreCase(":help")) {
                 webexClient.createMessage("You have reached the help menu!");
+            } else if (command.equalsIgnoreCase(":startmeeting")) {
+                webexClient.createMessage(startStatusMeeting());
+            } else if (command.equalsIgnoreCase(":teamstart")) {
+                webexClient.createMessage(startTeam());
+            } else if (command.equalsIgnoreCase(":teamfinish")) {
+                webexClient.createMessage(finishTeam());
+            } else if (command.equalsIgnoreCase(":agenda")) {
+                webexClient.createMessage(getMeetingAgenda());
             } else {
                 System.out.println("Not a Valid Command");
             }
         } else {
             System.out.println("Not a Command Message");
         }
+    }
+
+    private String startStatusMeeting() {
+        return "Your Meeting has been started";
+    }
+
+    private String startTeam() {
+        return "A team has started presenting";
+    }
+
+    private String finishTeam() {
+        return "A team has finished presenting";
+    }
+
+    private String getMeetingAgenda() {
+        return "Your Agenda will be displayed here";
     }
 
     private String parseOutCommand (String message) {
