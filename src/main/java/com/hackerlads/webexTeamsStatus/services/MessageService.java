@@ -1,16 +1,17 @@
 package com.hackerlads.webexTeamsStatus.services;
 
 import com.hackerlads.webexTeamsStatus.clients.WebexClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class MessageService {
 
     private WebexClient webexClient;
+    private MeetingService meetingService;
 
-    public MessageService(WebexClient webexClient) {
+    public MessageService(WebexClient webexClient, MeetingService meetingService) {
         this.webexClient = webexClient;
+        this.meetingService = meetingService;
     }
 
     public void messageHandler(String msgId) {
@@ -70,8 +71,7 @@ public class MessageService {
     }
 
     private void getMeetingAgenda() {
-        //TODO call meetingService get meeting agenda
-        webexClient.createMessage("Your Agenda will be displayed here");
+        webexClient.createMessage(meetingService.getMeetingAgenda().toString());
     }
 
     private String parseOutCommand(String message) {
