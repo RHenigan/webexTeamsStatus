@@ -5,6 +5,7 @@ import com.hackerlads.webexTeamsStatus.model.DynamicSchedule;
 import com.hackerlads.webexTeamsStatus.model.ScheduleNode;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -15,7 +16,9 @@ public class MeetingService {
     public String getMeetingAgenda() {
         String agenda = "";
         for (ScheduleNode scheduleNode : StatusBotController.dynamicSchedule.generateExpectedSchedule()) {
-            agenda = agenda + scheduleNode.getName() + " " + scheduleNode.getExpectedStartTime() + "-" + scheduleNode.getExpectedEndTime() + "\n";
+            agenda = agenda + scheduleNode.getName() + " " +
+                    DateFormat.getTimeInstance().format(scheduleNode.getExpectedStartTime() ) + "-" +
+                    DateFormat.getTimeInstance().format(scheduleNode.getExpectedEndTime() ) + "\n";
         }
         return agenda;
     }
