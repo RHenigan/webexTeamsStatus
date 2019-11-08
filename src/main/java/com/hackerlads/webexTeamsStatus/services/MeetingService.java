@@ -27,4 +27,23 @@ public class MeetingService {
     public void addTeam(String teamName) {
         StatusBotController.dynamicSchedule.add(teamName, 900);
     }
+
+    public String teamStart(String teamName) {
+        ScheduleNode node = StatusBotController.dynamicSchedule.markAsStarted(teamName);
+        if (null != node) {
+            return node.getName() + " has started presenting";
+        } else {
+            return "Failed to find team";
+        }
+    }
+
+    public String teamFinish(String teamName) {
+        ScheduleNode node = StatusBotController.dynamicSchedule.markAsFinished(teamName);
+        if (null != node) {
+            return node.getName() + " has finished presenting";
+        } else {
+            return "Failed to find team";
+        }
+    }
+
 }
