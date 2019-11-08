@@ -13,6 +13,8 @@ public class WebhookController {
     @Autowired
     WebexClient webexClient;
 
+    Boolean msgSent = false;
+
     @PostMapping("/messageCreated")
     public void test(@RequestBody Object msgCreatedJSONBody) {
         System.out.println("HOOK MESSAGE: " + msgCreatedJSONBody);
@@ -22,6 +24,8 @@ public class WebhookController {
         System.out.println("MESSAGE ID: " + msgId);
 
         System.out.println(webexClient.getMessageDetails(msgId));
-        webexClient.createMessage("Hello I am a bot to help you with status meetings");
+        if (msgSent = false) {
+            webexClient.createMessage("Hello I am a bot to help you with status meetings");
+        }
     }
 }
