@@ -25,6 +25,8 @@ public class MessageService {
                 webexClient.createMessage("You have reached the help menu!");
             } else if (command.equalsIgnoreCase(":startmeeting")) {
                 webexClient.createMessage(startStatusMeeting());
+            } else if (command.equalsIgnoreCase(":addteam")) {
+                webexClient.createMessage(addTeam());
             } else if (command.equalsIgnoreCase(":teamstart")) {
                 webexClient.createMessage(startTeam());
             } else if (command.equalsIgnoreCase(":teamfinish")) {
@@ -42,6 +44,11 @@ public class MessageService {
     private String startStatusMeeting() {
         //TODO call meetingService to start meeting
         return "Your Meeting has been started";
+    }
+
+    private String addTeam() {
+        //TODO call meetingService to start meeting
+        return "Team has been added";
     }
 
     private String startTeam() {
