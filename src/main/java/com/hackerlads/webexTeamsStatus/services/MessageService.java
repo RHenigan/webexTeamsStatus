@@ -12,6 +12,9 @@ public class MessageService {
 
     public void messageHandler(String msgId) {
         String message = (String) webexClient.getMessageDetails(msgId);
+        if (null == message) {
+            return;
+        }
         System.out.println("Message Details: " + message);
         message = message.replace("<div>", "").replace("</div>", "");
         System.out.println("Message divs removed: " + message);
