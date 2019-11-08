@@ -97,6 +97,16 @@ public class DynamicSchedule {
         return null;
     }
 
+    public ScheduleNode markAsNotified( String nodeName ) {
+        for ( ScheduleNode element: this.model ) {
+            if( element.getName().equals( nodeName )) {
+                element.setHasSentUpcomingAlert( true );
+                return element;
+            }
+        }
+        return null;
+    }
+
     public LinkedList<ScheduleNode> generateExpectedSchedule() {
         long offsetInSeconds = 0;
         LinkedList<ScheduleNode> output = new LinkedList<ScheduleNode>();

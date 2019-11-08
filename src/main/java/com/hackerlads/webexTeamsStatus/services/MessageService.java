@@ -1,6 +1,7 @@
 package com.hackerlads.webexTeamsStatus.services;
 
 import com.hackerlads.webexTeamsStatus.clients.WebexClient;
+import com.hackerlads.webexTeamsStatus.controllers.StatusBotController;
 import com.hackerlads.webexTeamsStatus.model.DynamicSchedule;
 import com.hackerlads.webexTeamsStatus.model.ScheduleNode;
 import org.springframework.stereotype.Service;
@@ -89,8 +90,12 @@ public class MessageService {
         webexClient.createMessage(meetingService.getMeetingAgenda().toString());
     }
 
-    private void notifyTeamsOfUpcommingPresentation( DynamicSchedule schedule ) {
-        LinkedList<ScheduleNode> upcomingSchedule = schedule.generateExpectedSchedule();
+    public void notifyTeamsOfUpcommingPresentation() {
+        LinkedList<ScheduleNode> upcomingSchedule = StatusBotController.dynamicSchedule.generateExpectedSchedule();
+        for( ScheduleNode element: upcomingSchedule ) {
+            webexClient.createMessage( element.getName() + " is on soon (" + element.getExpectedStartTime().toString() + "-" + element.getExpectedEndTime() );
+            StatusBotController.dynamicSchedule.markAsNotified( element.getName() );
+        }
     }
 
     private String parseOutCommand(String message) {
