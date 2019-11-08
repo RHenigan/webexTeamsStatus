@@ -23,12 +23,18 @@ public class MessageService {
             System.out.println("Command: " + command);
             if (command.equalsIgnoreCase(":help")) {
                 webexClient.createMessage("You have reached the help menu!");
+            } else if (command.equalsIgnoreCase("agenda")) {
+                webexClient.createMessage(getMeetingAgenda());
             } else {
                 System.out.println("Not a Valid Command");
             }
         } else {
             System.out.println("Not a Command Message");
         }
+    }
+
+    private String getMeetingAgenda() {
+        return "Your Agenda will be displayed here";
     }
 
     private String parseOutCommand (String message) {
