@@ -22,5 +22,6 @@ public class WebhookController {
         System.out.println("MESSAGE ID: " + msgId);
 
         System.out.println(webexClient.getMessageDetails(msgId));
+        webexClient.createMessage("Hello I am a bot to help you with status meetings");
     }
 }
