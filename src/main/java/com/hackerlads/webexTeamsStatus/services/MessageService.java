@@ -76,8 +76,8 @@ public class MessageService {
     }
 
     private void startStatusMeeting() {
-        //TODO call meetingService to start meeting
-        webexClient.createMessage("Your Meeting has been started");
+        meetingService.startMeeting();
+        webexClient.createMessage("Your Meeting has been started.");
     }
 
     private void addTeam(String teamName) {

@@ -13,7 +13,7 @@ public class DynamicSchedule {
 
     @Getter
     @Setter
-    private LocalDateTime scheduledStartTime;
+    private Date scheduledStartTime;
 
     public DynamicSchedule() {
         this.model = new LinkedList<>();
