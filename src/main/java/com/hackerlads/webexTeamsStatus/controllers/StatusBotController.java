@@ -16,13 +16,11 @@ import java.util.LinkedHashMap;
 public class StatusBotController {
 
     private DynamicSchedule dynamicSchedule;
+    private WebexClient webexClient;
 
-    @Autowired
-    WebexClient webexClient;
-
-    @Autowired
-    public StatusBotController(){
+    public StatusBotController(WebexClient webexClient){
         this.dynamicSchedule = new DynamicSchedule();
+        this.webexClient = webexClient;
     }
 
     @PostMapping(value = "/testHooks", produces = "application/json")

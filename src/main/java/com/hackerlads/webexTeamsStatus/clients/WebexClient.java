@@ -15,10 +15,13 @@ import java.util.List;
 @Component
 public class WebexClient {
 
-    @Autowired
-    Environment env;
+    private Environment env;
 
     private static final String MSG_URL = "https://api.ciscospark.com/v1/messages";
+
+    public WebexClient(Environment env) {
+        this.env = env;
+    }
 
     public Object getMessageDetails(String messageId) {
         String getMessageDetailsURL = MSG_URL + "/"+ messageId;

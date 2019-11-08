@@ -7,8 +7,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessageService {
 
-    @Autowired
-    WebexClient webexClient;
+    private WebexClient webexClient;
+
+    public MessageService(WebexClient webexClient) {
+        this.webexClient = webexClient;
+    }
 
     public void messageHandler(String msgId) {
         String message = (String) webexClient.getMessageDetails(msgId);
@@ -59,7 +62,7 @@ public class MessageService {
         return "Your Agenda will be displayed here";
     }
 
-    private String parseOutCommand (String message) {
+    private String parseOutCommand(String message) {
         String command = "";
         if (message.contains(" ")) {
             command = message.substring(0, message.indexOf(" "));
