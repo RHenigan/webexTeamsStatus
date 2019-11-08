@@ -113,8 +113,8 @@ public class DynamicSchedule {
 
         for( ScheduleNode element: this.model ) {
             ScheduleNode expectedMeetingSchedule = element.deepCopy();
-            offsetInSeconds += meetingTimeLeft( expectedMeetingSchedule );
             expectedMeetingSchedule = setExpectedTimes( expectedMeetingSchedule, offsetInSeconds );
+            offsetInSeconds += meetingTimeLeft( expectedMeetingSchedule );
             output.addLast( expectedMeetingSchedule );
         }
 
