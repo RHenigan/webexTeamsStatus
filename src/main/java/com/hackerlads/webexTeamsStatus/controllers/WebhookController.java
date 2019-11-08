@@ -1,6 +1,6 @@
 package com.hackerlads.webexTeamsStatus.controllers;
 
-import com.hackerlads.webexTeamsStatus.clients.WebexClient;
+import com.hackerlads.webexTeamsStatus.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,22 +11,19 @@ import java.util.LinkedHashMap;
 public class WebhookController {
 
     @Autowired
-    WebexClient webexClient;
-
-    Boolean msgSent = false;
+    MessageService messageService;
 
     @PostMapping("/messageCreated")
     public void test(@RequestBody Object msgCreatedJSONBody) {
+
         System.out.println("HOOK MESSAGE: " + msgCreatedJSONBody);
-        LinkedHashMap mappedMsg = (LinkedHashMap) msgCreatedJSONBody;
-        LinkedHashMap mappedMsg1  = (LinkedHashMap) mappedMsg.get("data");
-        String msgId = (String) mappedMsg1.get("id");
+
+        LinkedHashMap webhookMessage = (LinkedHashMap) msgCreatedJSONBody;
+        LinkedHashMap msgData  = (LinkedHashMap) webhookMessage.get("data");
+        String msgId = (String) msgData.get("id");
+
         System.out.println("MESSAGE ID: " + msgId);
 
-        System.out.println(webexClient.getMessageDetails(msgId));
-        if (!msgSent) {
-            webexClient.createMessage("Hello I am a bot to help you with status meetings");
-            msgSent = true;
-        }
+        messageService.messageHandler(msgId);
     }
 }

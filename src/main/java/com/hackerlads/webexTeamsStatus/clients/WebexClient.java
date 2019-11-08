@@ -18,8 +18,11 @@ public class WebexClient {
     @Autowired
     Environment env;
 
+    private static final String GET_MSG_URL = "https://api.ciscospark.com/v1/messages/";
+    private static final String CREATE_MSG_URL = "";
+
     public Object getMessageDetails(String messageId) {
-        String getMessageDetailsURL = "https://api.ciscospark.com/v1/messages/" + messageId;
+        String getMessageDetailsURL = GET_MSG_URL + messageId;
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Object> responseEntity = null;
@@ -41,14 +44,14 @@ public class WebexClient {
     }
 
     public void createMessage(String msgContent) {
-        String creatMessageDetailsURL = "https://api.ciscospark.com/v1/messages";
-
         RestTemplate restTemplate = new RestTemplate();
+
         MultiValueMap<String, String> body = new LinkedMultiValueMap<String, String>();
         body.add("roomId", env.getProperty("webexRoomId"));
         body.add("text", msgContent);
+
         try {
-            restTemplate.exchange(creatMessageDetailsURL, HttpMethod.POST, makeHTTPEntity(body), Object.class);
+            restTemplate.exchange(CREATE_MSG_URL, HttpMethod.POST, makeHTTPEntity(body), Object.class);
             System.out.println("Successfully Retrieved Message ID");
         } catch (Exception e) {
             System.out.println("Error Retrieving Message ID" + e.getMessage());
