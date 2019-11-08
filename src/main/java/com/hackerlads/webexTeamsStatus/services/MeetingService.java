@@ -24,4 +24,7 @@ public class MeetingService {
         StatusBotController.dynamicSchedule.setScheduledStartTime(new Date());
     }
 
+    public void addTeam(String teamName) {
+        StatusBotController.dynamicSchedule.add(teamName, 900);
+    }
 }

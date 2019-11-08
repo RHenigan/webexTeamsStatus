@@ -88,7 +88,7 @@ public class MessageService {
     }
 
     private void startTeam(String teamName) {
-        //TODO call meetingService to start team presenting
+        meetingService.addTeam(teamName);
         webexClient.createMessage("A team has started presenting");
     }
 
