@@ -28,9 +28,9 @@ public class WebexClient {
 
         try {
             responseEntity = restTemplate.exchange(getMessageDetailsURL, HttpMethod.GET, makeHTTPEntity(null), Object.class);
-            System.out.println("Successfully Retrieved Message ID");
+            System.out.println("Successfully Retrieved Message ID: " + responseEntity.getBody());
         } catch (Exception e) {
-            System.out.println("Error Retrieving Message ID" + e.getMessage());
+            System.out.println("Error Retrieving Message ID: " + e.getMessage());
         }
 
         if (null != responseEntity) {
@@ -50,10 +50,10 @@ public class WebexClient {
         body.add("text", msgContent);
 
         try {
-            restTemplate.exchange(MSG_URL, HttpMethod.POST, makeHTTPEntity(body), Object.class);
-            System.out.println("Successfully Retrieved Message ID");
+            ResponseEntity<Object> response = restTemplate.exchange(MSG_URL, HttpMethod.POST, makeHTTPEntity(body), Object.class);
+            System.out.println("Successfully Created Message: " + response.getBody());
         } catch (Exception e) {
-            System.out.println("Error Retrieving Message ID " + e.getMessage());
+            System.out.println("Error Creating Message: " + e.getMessage());
         }
     }
 
