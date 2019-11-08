@@ -141,8 +141,8 @@ public class DynamicSchedule {
             output.setExpectedEndTime( new Date( now.getTime() + timeLeftInMeetingInSeconds * MILLISECONDS_IN_A_SECOND ) );
         }
         else {
-            output.setExpectedStartTime( output.getExpectedStartTime() );
-            output.setExpectedEndTime( output.getExpectedEndTime() );
+            output.setExpectedStartTime( output.getActualStartTime() );
+            output.setExpectedEndTime( output.getActualEndTime() );
         }
 
         return output;
