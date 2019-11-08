@@ -10,8 +10,11 @@ import java.util.LinkedHashMap;
 @RequestMapping("webhooks")
 public class WebhookController {
 
-    @Autowired
-    MessageService messageService;
+    private MessageService messageService;
+
+    public WebhookController(MessageService messageService) {
+        this.messageService = messageService;
+    }
 
     @PostMapping("/messageCreated")
     public void test(@RequestBody Object msgCreatedJSONBody) {
