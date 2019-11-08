@@ -16,6 +16,7 @@ public class ScheduleNode {
     private Date actualEndTime;
     private Date expectedStartTime;
     private Date expectedEndTime;
+    public boolean hasSentUpcomingAlert;
 
     public ScheduleNode deepCopy() {
         ScheduleNode output = new ScheduleNode();
@@ -25,6 +26,7 @@ public class ScheduleNode {
         output.setActualEndTime( this.getActualEndTime() );
         output.setExpectedStartTime( this.getExpectedStartTime() );
         output.setExpectedEndTime( this.getExpectedEndTime() );
+        output.hasSentUpcomingAlert = this.hasSentUpcomingAlert;
         return output;
     }
 }

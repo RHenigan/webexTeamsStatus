@@ -1,5 +1,4 @@
 package com.hackerlads.webexTeamsStatus.model;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -42,6 +41,19 @@ public class DynamicSchedule {
             }
         }
         return null;
+    }
+
+    public LinkedList<ScheduleNode> getUpcoming( long upcomingTimeIntervalInSeconds ) {
+        LinkedList<ScheduleNode> predictedSchedule = generateExpectedSchedule();
+        LinkedList<ScheduleNode> output = new LinkedList<>();
+        Date now = new Date();
+        Date upcomingDate = new Date( now.getTime() + upcomingTimeIntervalInSeconds * MILLISECONDS_IN_A_SECOND);
+        for( ScheduleNode element: predictedSchedule) {
+            if( element.getExpectedStartTime().before( upcomingDate ) && !element.hasSentUpcomingAlert ) {
+                output.addLast( element );
+            }
+        }
+        return output;
     }
 
     public ScheduleNode cancelScheduleNode( String nodeName ) {

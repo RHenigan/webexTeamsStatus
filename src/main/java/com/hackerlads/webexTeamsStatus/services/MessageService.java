@@ -27,13 +27,15 @@ public class MessageService {
             if (command.equalsIgnoreCase(":help")) {
                 webexClient.createMessage("You have reached the help menu!");
             } else if (command.equalsIgnoreCase(":startmeeting")) {
-                webexClient.createMessage(startStatusMeeting());
+                startStatusMeeting();
+            } else if (command.equalsIgnoreCase(":addteam")) {
+                addTeam();
             } else if (command.equalsIgnoreCase(":teamstart")) {
-                webexClient.createMessage(startTeam());
+                startTeam();
             } else if (command.equalsIgnoreCase(":teamfinish")) {
-                webexClient.createMessage(finishTeam());
+                finishTeam();
             } else if (command.equalsIgnoreCase(":agenda")) {
-                webexClient.createMessage(getMeetingAgenda());
+                getMeetingAgenda();
             } else {
                 System.out.println("Not a Valid Command");
             }
@@ -42,24 +44,29 @@ public class MessageService {
         }
     }
 
-    private String startStatusMeeting() {
+    private void startStatusMeeting() {
         //TODO call meetingService to start meeting
-        return "Your Meeting has been started";
+        webexClient.createMessage("Your Meeting has been started");
     }
 
-    private String startTeam() {
+    private void addTeam() {
+        //TODO call meetingService to start meeting
+        webexClient.createMessage("Team has been added");
+    }
+
+    private void startTeam() {
         //TODO call meetingService to start team presenting
-        return "A team has started presenting";
+        webexClient.createMessage("A team has started presenting");
     }
 
-    private String finishTeam() {
+    private void finishTeam() {
         //TODO call meetingService to finish presenting
-        return "A team has finished presenting";
+        webexClient.createMessage("A team has finished presenting");
     }
 
-    private String getMeetingAgenda() {
+    private void getMeetingAgenda() {
         //TODO call meetingService get meeting agenda
-        return "Your Agenda will be displayed here";
+        webexClient.createMessage("Your Agenda will be displayed here");
     }
 
     private String parseOutCommand(String message) {
