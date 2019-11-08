@@ -2,6 +2,7 @@ package com.hackerlads.webexTeamsStatus.controllers;
 
 import com.hackerlads.webexTeamsStatus.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
@@ -28,5 +29,10 @@ public class WebhookController {
         System.out.println("MESSAGE ID: " + msgId);
 
         messageService.messageHandler(msgId);
+    }
+
+    @Scheduled( fixedRate = 15000 )
+    public void notifyUpcoming() {
+        messageService.notifyTeamsOfUpcommingPresentation();
     }
 }

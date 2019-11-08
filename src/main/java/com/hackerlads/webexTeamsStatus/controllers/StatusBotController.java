@@ -75,9 +75,4 @@ public class StatusBotController {
         }
         return new ResponseEntity(dynamicSchedule.cancelScheduleNode(meetingName), HttpStatus.OK);
     }
-
-    @Scheduled( fixedRate = 15000 )
-    public void notifyUpcoming() {
-
-    }
 }
