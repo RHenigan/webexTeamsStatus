@@ -121,6 +121,11 @@ public class DynamicSchedule {
         return output;
     }
 
+    public void resetMeeting() {
+        this.model.clear();
+        this.scheduledStartTime = null;
+    }
+
     private static ScheduleNode setExpectedTimes( ScheduleNode element, long offsetInSeconds ) {
         Date now = new Date();
         ScheduleNode output = element.deepCopy();
