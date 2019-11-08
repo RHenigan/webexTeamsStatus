@@ -30,17 +30,18 @@ public class MessageService {
         if (message.charAt(0) == ':') {
             String command = parseOutCommand(message);
             System.out.println("Command: " + command);
+            String teamName = getTeamName(message);
             if (command.equalsIgnoreCase(":help")) {
                 sendHelpMessage();
                 webexClient.createMessage("You have reached the help menu!");
             } else if (command.equalsIgnoreCase(":startmeeting")) {
                 startStatusMeeting();
             } else if (command.equalsIgnoreCase(":addteam")) {
-                addTeam();
+                addTeam(teamName);
             } else if (command.equalsIgnoreCase(":teamstart")) {
-                startTeam();
+                startTeam(teamName);
             } else if (command.equalsIgnoreCase(":teamfinish")) {
-                finishTeam();
+                finishTeam(teamName);
             } else if (command.equalsIgnoreCase(":agenda")) {
                 getMeetingAgenda();
             } else {
@@ -49,6 +50,16 @@ public class MessageService {
         } else {
             System.out.println("Not a Command Message");
         }
+    }
+
+    private String getTeamName(String message) {
+        String teamName = "";
+        if(message.split(" ").length == 2) {
+            String teamName = message.split(" ")[1];
+        } else{
+            System.out.println("Missing parameter");
+        }
+        return teamName;
     }
 
     private void sendHelpMessage() {
