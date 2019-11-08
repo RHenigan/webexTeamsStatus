@@ -32,7 +32,6 @@ public class MessageService {
             System.out.println("Command: " + command);
             if (command.equalsIgnoreCase(":help")) {
                 sendHelpMessage();
-                webexClient.createMessage("You have reached the help menu!");
             } else if (command.equalsIgnoreCase(":startmeeting")) {
                 startStatusMeeting();
             } else if (command.equalsIgnoreCase(":addteam")) {
