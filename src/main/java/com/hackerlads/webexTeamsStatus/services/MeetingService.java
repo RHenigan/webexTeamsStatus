@@ -8,11 +8,7 @@ import java.util.LinkedList;
 @Service
 public class MeetingService {
 
-    private DynamicSchedule dynamicSchedule;
-
-    public MeetingService() {
-        DynamicSchedule dynamicSchedule = new DynamicSchedule();
-    }
+    private DynamicSchedule dynamicSchedule = new DynamicSchedule();
 
     public LinkedList getMeetingAgenda() {
         return dynamicSchedule.generateExpectedSchedule();
