@@ -98,7 +98,10 @@ public class MessageService {
     }
 
     private void getMeetingAgenda() {
-        webexClient.createMessage(meetingService.getMeetingAgenda().toString());
+        String agenda = meetingService.getMeetingAgenda();
+        if (!agenda.equalsIgnoreCase("")) {
+            webexClient.createMessage(meetingService.getMeetingAgenda());
+        }
     }
 
     private void resetMeeting() {
