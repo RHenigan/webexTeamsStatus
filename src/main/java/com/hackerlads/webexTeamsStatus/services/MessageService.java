@@ -1,7 +1,11 @@
 package com.hackerlads.webexTeamsStatus.services;
 
 import com.hackerlads.webexTeamsStatus.clients.WebexClient;
+import com.hackerlads.webexTeamsStatus.model.DynamicSchedule;
+import com.hackerlads.webexTeamsStatus.model.ScheduleNode;
 import org.springframework.stereotype.Service;
+
+import java.util.LinkedList;
 
 @Service
 public class MessageService {
@@ -27,6 +31,7 @@ public class MessageService {
             System.out.println("Command: " + command);
             String teamName = getTeamName(message);
             if (command.equalsIgnoreCase(":help")) {
+                sendHelpMessage();
                 webexClient.createMessage("You have reached the help menu!");
             } else if (command.equalsIgnoreCase(":startmeeting")) {
                 startStatusMeeting();
@@ -56,6 +61,10 @@ public class MessageService {
         return teamName;
     }
 
+    private void sendHelpMessage() {
+        webexClient.createMessage(":startmeeting will start you status meeting\n:addteam <teamname> will add a team to the meeting\n:teamstart <teamname> will start a teams presentation time window\n:teamfinish <teamfinish> will end a teams presentation time window\n:agenda will present the current meeting agenda");
+    }
+
     private void startStatusMeeting() {
         //TODO call meetingService to start meeting
         webexClient.createMessage("Your Meeting has been started");
@@ -78,6 +87,10 @@ public class MessageService {
 
     private void getMeetingAgenda() {
         webexClient.createMessage(meetingService.getMeetingAgenda().toString());
+    }
+
+    private void notifyTeamsOfUpcommingPresentation( DynamicSchedule schedule ) {
+        LinkedList<ScheduleNode> upcomingSchedule = schedule.generateExpectedSchedule();
     }
 
     private String parseOutCommand(String message) {

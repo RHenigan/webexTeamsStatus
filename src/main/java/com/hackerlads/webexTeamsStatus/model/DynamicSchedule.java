@@ -33,7 +33,6 @@ public class DynamicSchedule {
     }
 
     public ScheduleNode get( String nodeName ) {
-        long offsetInSeconds = 0;
         LinkedList<ScheduleNode> expectedSchedule = generateExpectedSchedule();
         for ( ScheduleNode element: expectedSchedule ) {
             if( element.getName().equals( nodeName ) ) {
