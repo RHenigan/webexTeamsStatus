@@ -1,12 +1,17 @@
 package com.hackerlads.webexTeamsStatus.controllers;
 
+import com.hackerlads.webexTeamsStatus.clients.WebexClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
 
 @RestController
 @RequestMapping("webhooks")
-public class webhookController {
+public class WebhookController {
+
+    @Autowired
+    WebexClient webexClient;
 
     @PostMapping("/messageCreated")
     public void test(@RequestBody Object msgCreatedJSONBody) {
@@ -15,5 +20,7 @@ public class webhookController {
         LinkedHashMap mappedMsg1  = (LinkedHashMap) mappedMsg.get("data");
         String msgId = (String) mappedMsg1.get("id");
         System.out.println("MESSAGE ID: " + msgId);
+
+        System.out.println(webexClient.getMessageDetails(msgId));
     }
 }
