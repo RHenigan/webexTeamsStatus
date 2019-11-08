@@ -97,7 +97,7 @@ public class DynamicSchedule {
         return null;
     }
 
-    private LinkedList<ScheduleNode> generateExpectedSchedule() {
+    public LinkedList<ScheduleNode> generateExpectedSchedule() {
         long offsetInSeconds = 0;
         LinkedList<ScheduleNode> output = new LinkedList<ScheduleNode>();
 
