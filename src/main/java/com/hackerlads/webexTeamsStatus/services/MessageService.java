@@ -1,7 +1,11 @@
 package com.hackerlads.webexTeamsStatus.services;
 
 import com.hackerlads.webexTeamsStatus.clients.WebexClient;
+import com.hackerlads.webexTeamsStatus.model.DynamicSchedule;
+import com.hackerlads.webexTeamsStatus.model.ScheduleNode;
 import org.springframework.stereotype.Service;
+
+import java.util.LinkedList;
 
 @Service
 public class MessageService {
@@ -67,6 +71,10 @@ public class MessageService {
 
     private void getMeetingAgenda() {
         webexClient.createMessage(meetingService.getMeetingAgenda().toString());
+    }
+
+    private void notifyTeamsOfUpcommingPresentation( DynamicSchedule schedule ) {
+        LinkedList<ScheduleNode> upcomingSchedule = schedule.generateExpectedSchedule();
     }
 
     private String parseOutCommand(String message) {

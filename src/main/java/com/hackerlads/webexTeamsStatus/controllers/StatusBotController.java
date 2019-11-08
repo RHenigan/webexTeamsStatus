@@ -16,7 +16,7 @@ import java.util.LinkedHashMap;
 @RestController
 public class StatusBotController {
 
-    private DynamicSchedule dynamicSchedule;
+    public static DynamicSchedule dynamicSchedule;
     private WebexClient webexClient;
 
     public StatusBotController(WebexClient webexClient){
