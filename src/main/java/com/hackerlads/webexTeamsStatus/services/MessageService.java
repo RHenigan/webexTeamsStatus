@@ -100,7 +100,7 @@ public class MessageService {
     }
 
     public void notifyTeamsOfUpcommingPresentation() {
-        LinkedList<ScheduleNode> upcomingSchedule = StatusBotController.dynamicSchedule.generateExpectedSchedule();
+        LinkedList<ScheduleNode> upcomingSchedule = StatusBotController.dynamicSchedule.getUpcoming( 60000 );
         for( ScheduleNode element: upcomingSchedule ) {
             webexClient.createMessage( element.getName() + " is on soon (" + element.getExpectedStartTime().toString() + "-" + element.getExpectedEndTime() );
             StatusBotController.dynamicSchedule.markAsNotified( element.getName() );
