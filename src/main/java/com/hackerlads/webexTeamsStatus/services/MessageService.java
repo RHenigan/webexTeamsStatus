@@ -40,18 +40,22 @@ public class MessageService {
     }
 
     private String startStatusMeeting() {
+        //TODO call meetingService to start meeting
         return "Your Meeting has been started";
     }
 
     private String startTeam() {
+        //TODO call meetingService to start team presenting
         return "A team has started presenting";
     }
 
     private String finishTeam() {
+        //TODO call meetingService to finish presenting
         return "A team has finished presenting";
     }
 
     private String getMeetingAgenda() {
+        //TODO call meetingService get meeting agenda
         return "Your Agenda will be displayed here";
     }
 
