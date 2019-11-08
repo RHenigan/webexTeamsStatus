@@ -92,7 +92,7 @@ public class MessageService {
     }
 
     private void finishTeam(String teamName) {
-        webexClient.createMessage(meetingService.teamStart(teamName));
+        webexClient.createMessage(meetingService.teamFinish(teamName));
     }
 
     private void getMeetingAgenda() {
