@@ -18,7 +18,7 @@ public class MessageService {
         if (message.charAt(0) == ':') {
             String command = parseOutCommand(message);
             System.out.println("Command: " + command);
-            if (command.equalsIgnoreCase("help")) {
+            if (command.equalsIgnoreCase(":help")) {
                 webexClient.createMessage("You have reached the help menu!");
             } else {
                 System.out.println("Not a Valid Command");
