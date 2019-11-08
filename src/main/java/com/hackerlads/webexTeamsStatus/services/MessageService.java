@@ -30,18 +30,26 @@ public class MessageService {
         if (message.charAt(0) == ':') {
             String command = parseOutCommand(message);
             System.out.println("Command: " + command);
-            String teamName = getTeamName(message);
             if (command.equalsIgnoreCase(":help")) {
                 sendHelpMessage();
                 webexClient.createMessage("You have reached the help menu!");
             } else if (command.equalsIgnoreCase(":startmeeting")) {
                 startStatusMeeting();
             } else if (command.equalsIgnoreCase(":addteam")) {
-                addTeam(teamName);
+                String teamName = getTeamName(message);
+                if(teamName != "") {
+                    addTeam(teamName);
+                }
             } else if (command.equalsIgnoreCase(":teamstart")) {
-                startTeam(teamName);
+                String teamName = getTeamName(message);
+                if(teamName != "") {
+                    startTeam(teamName);
+                }
             } else if (command.equalsIgnoreCase(":teamfinish")) {
-                finishTeam(teamName);
+                String teamName = getTeamName(message);
+                if(teamName != "") {
+                    finishTeam(teamName);
+                }
             } else if (command.equalsIgnoreCase(":agenda")) {
                 getMeetingAgenda();
             } else {
@@ -55,8 +63,9 @@ public class MessageService {
     private String getTeamName(String message) {
         String teamName = "";
         if(message.split(" ").length == 2) {
-            String teamName = message.split(" ")[1];
+            teamName = message.split(" ")[1];
         } else{
+            webexClient.createMessage("Missing a parameter");
             System.out.println("Missing parameter");
         }
         return teamName;
@@ -71,17 +80,17 @@ public class MessageService {
         webexClient.createMessage("Your Meeting has been started");
     }
 
-    private void addTeam() {
+    private void addTeam(String teamName) {
         //TODO call meetingService to start meeting
         webexClient.createMessage("Team has been added");
     }
 
-    private void startTeam() {
+    private void startTeam(String teamName) {
         //TODO call meetingService to start team presenting
         webexClient.createMessage("A team has started presenting");
     }
 
-    private void finishTeam() {
+    private void finishTeam(String teamName) {
         //TODO call meetingService to finish presenting
         webexClient.createMessage("A team has finished presenting");
     }
