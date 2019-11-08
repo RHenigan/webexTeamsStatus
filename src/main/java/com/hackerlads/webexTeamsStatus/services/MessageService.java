@@ -23,6 +23,8 @@ public class MessageService {
             System.out.println("Command: " + command);
             if (command.equalsIgnoreCase(":help")) {
                 webexClient.createMessage("You have reached the help menu!");
+            } else if (command.equalsIgnoreCase(":startmeeting")) {
+                webexClient.createMessage(startStatusMeeting());
             } else if (command.equalsIgnoreCase(":agenda")) {
                 webexClient.createMessage(getMeetingAgenda());
             } else {
@@ -31,6 +33,10 @@ public class MessageService {
         } else {
             System.out.println("Not a Command Message");
         }
+    }
+
+    private String startStatusMeeting() {
+        return "Your Meeting has been started";
     }
 
     private String getMeetingAgenda() {
