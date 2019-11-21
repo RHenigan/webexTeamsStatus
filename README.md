@@ -4,7 +4,7 @@ This is a chatbot for webex teams that keeps track of a dynamic schedule
 
 A dynamic schedule is a schedule that changes over time. Our schedule bot models continuous change by updating the predicted times for future time slots. As one slot begins to run over their expected duration, all slots after them are pushed back to accomodate this. As slots run under time, predicted times move forward.
 
-#Commands
+# Commands
 ## :help
 Displays each commans with a short description
 ## :startmeeting 
